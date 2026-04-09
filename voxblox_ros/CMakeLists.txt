@@ -9,6 +9,7 @@ set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
 find_package(backward_ros REQUIRED)
 find_package(PCL REQUIRED)
+find_package(tf2_eigen REQUIRED)
 include_directories(
   include
   ${EIGEN3_INCLUDE_DIRS}
@@ -44,6 +45,7 @@ target_link_libraries(${PROJECT_NAME}
   ${xmlrpcpp_LIBRARIES}
   glog::glog
   protobuf::libprotobuf
+  tf2_eigen::tf2_eigen
 )
 
 set(ADITIONAL_LIBS 
