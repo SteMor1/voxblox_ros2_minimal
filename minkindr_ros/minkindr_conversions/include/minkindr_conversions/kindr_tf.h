@@ -9,7 +9,7 @@
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 #include <tf2/transform_datatypes.hpp>
-#include <tf2_eigen/tf2_eigen/tf2_eigen.h>
+#include <tf2_eigen/tf2_eigen.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 
 #include <glog/logging.h>
