@@ -14,6 +14,7 @@ include_directories(
   include
   ${EIGEN3_INCLUDE_DIRS}
   ${PCL_INCLUDE_DIRS}
+  ${tf2_eigen_INCLUDE_DIRS}
 )
 
 
