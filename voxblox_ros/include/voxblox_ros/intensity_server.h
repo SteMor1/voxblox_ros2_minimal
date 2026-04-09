@@ -5,7 +5,7 @@
 
 #include <rclcpp/rclcpp.hpp>
 
-#include <cv_bridge/cv_bridge.hpp>
+#include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/msg/image.hpp>
 
 #include <voxblox/core/voxel.h>
