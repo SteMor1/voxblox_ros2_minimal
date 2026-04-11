@@ -71,13 +71,13 @@ def generate_launch_description():
     skeletonizer_node = Node(
         package="voxblox_skeleton",
         executable="skeletonizer_realtime",
-        # name="voxblox_skeletonizer",
+        name="voxblox_skeletonizer",
         output="screen",
         emulate_tty=True,
         # respawn=True,
         # arguments=["-v=1"],
         remappings=[
-            ("pointcloud", LaunchConfiguration("pc_topic")),
+            ("/voxblox_skeletonizer/pointcloud", LaunchConfiguration("pc_topic")),
         ],
         parameters=[
             {
