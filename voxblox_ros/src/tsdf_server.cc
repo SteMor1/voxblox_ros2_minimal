@@ -106,9 +106,9 @@ TsdfServer::TsdfServer(
   node_ptr_->get_parameter("pointcloud_queue_size", pointcloud_queue_size_);
 
   pointcloud_sub_ =
-    node_ptr_->create_subscription<sensor_msgs::msg::PointCloud2>(
-          // "pointcloud", pointcloud_queue_size_,
-          generate_private_name(node_ptr_, "pointcloud"), pointcloud_queue_size_,
+      node_ptr_->create_subscription<sensor_msgs::msg::PointCloud2>(
+          generate_private_name(node_ptr_, "pointcloud"),
+          rclcpp::QoS(pointcloud_queue_size_).best_effort(),
           std::bind(&TsdfServer::insertPointcloud, this,
                     std::placeholders::_1));
 
