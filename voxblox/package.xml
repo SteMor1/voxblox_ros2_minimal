@@ -13,10 +13,15 @@
   <license>BSD</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
   <build_depend>eigen</build_depend>
   <build_depend>eigen_checks</build_depend>
   <depend>minkindr</depend>
+  <depend>protobuf-dev</depend>
+  <depend>libgoogle-glog-dev</depend>
+
+  <test_depend>ament_cmake_gtest</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
