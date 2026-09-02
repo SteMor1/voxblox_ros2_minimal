@@ -11,7 +11,7 @@
 
   <!-- <depend>eigen_conversions</depend> -->
   <depend>rclcpp</depend>
-  <depend>Eigen3</depend>
+  <depend>eigen</depend>
   <depend>geometry_msgs</depend>
   <depend>libgflags-dev</depend>
   <depend>libgoogle-glog-dev</depend>
