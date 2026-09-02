@@ -4,6 +4,7 @@ project(minkindr_conversions)
 find_package(ament_cmake_auto REQUIRED)
 ament_auto_find_build_dependencies()
 # catkin_simple(ALL_DEPS_REQUIRED)
+find_package(Eigen3 REQUIRED)
 find_package(glog REQUIRED)
 
 add_definitions(-std=c++17)
