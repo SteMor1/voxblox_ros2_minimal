@@ -66,18 +66,23 @@ def generate_launch_description():
             LaunchConfiguration("sparse_graph_name"),
         ]
     )
-
+    use_sim_time_arg = DeclareLaunchArgument(
+        "use_sim_time",
+        default_value="True",
+        description="Use simulation time (true) or wall clock (true)",
+    )
+    use_sim_time = LaunchConfiguration("use_sim_time")
     # --- Voxblox skeletonizer node ---
     skeletonizer_node = Node(
         package="voxblox_skeleton",
         executable="skeletonizer_realtime",
-        # name="voxblox_skeletonizer",
+        name="voxblox_skeletonizer",
         output="screen",
         emulate_tty=True,
         # respawn=True,
         # arguments=["-v=1"],
         remappings=[
-            ("pointcloud", LaunchConfiguration("pc_topic")),
+            ("/voxblox_skeletonizer/pointcloud", LaunchConfiguration("pc_topic")),
         ],
         parameters=[
             {
@@ -106,6 +111,7 @@ def generate_launch_description():
                 "generate_by_layer_neighbors": False,
                 "slice_level": 1.0,
                 "publish_slices": True,
+                "use_sim_time": False,
             }
         ],
     )
@@ -120,8 +126,28 @@ def generate_launch_description():
         arguments=["0", "0", "0.0", "0", "0", "0", "map", "map_elevated"],
         output="screen",
         emulate_tty=True,
+        parameters=[{"use_sim_time": use_sim_time }],
     )
-
+    static_tf_camera = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        name="camera_to_realsense_optical",
+        arguments=["0", "0", "0", "0", "0", "0",
+                "camera", "realsense_color_optical_frame"],
+        output="screen",
+        emulate_tty=True,
+        parameters=[{"use_sim_time": use_sim_time}],
+    )
+    static_tf_oak_camera = Node(
+        package="tf2_ros",
+        executable="static_transform_publisher",
+        name="camera_to_oak_rgb_optical",
+        arguments=["0", "0", "0", "0", "0", "0",
+                "map", "oak_rgb_camera_optical_frame"],
+        output="screen",
+        emulate_tty=True,
+        parameters=[{"use_sim_time": use_sim_time}],
+    )
     return LaunchDescription(
         [
             base_path_arg,
@@ -130,7 +156,10 @@ def generate_launch_description():
             sparse_graph_name_arg,
             frame_id_arg,
             pc_topic_arg,
+            use_sim_time_arg,
             skeletonizer_node,
             static_tf_node,
+            static_tf_camera,
+            static_tf_oak_camera
         ]
     )
